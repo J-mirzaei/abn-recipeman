@@ -1,0 +1,86 @@
+
+---
+springdoc:
+  api-docs:
+    enabled: true
+---
+
+logging:
+  level:
+    ROOT: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+    com.anb: DEBUG
+
+
+spring:
+  application:
+    name: ABNRecipe
+  data:
+    jpa:
+      repositories:
+        enabled: "true"
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation=true: true
+
+    open-in-view: "false"
+    hibernate:
+      ddl-auto: "${SPRING_DATASOURCE_AUTO_DDL:update}"
+    database-platform: "${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.PostgreSQL95Dialect}"
+#    database-platform: "${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.H2Dialect}"
+  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    url: "${SPRING_DATASOURCE_URL:jdbc:h2:mem:recipeman;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}"
+    driverClassName: "${SPRING_DRIVER_CLASS_NAME:org.postgresql.Driver}"
+    url: jdbc:postgresql://localhost:5432/recipeMan
+    username: "${SPRING_DATASOURCE_USERNAME:postgres}"
+    password: "${SPRING_DATASOURCE_PASSWORD:postgres}"
+    hikari:
+      maximumPoolSize: "${SPRING_DATASOURCE_MAXIMUM_POOL_SIZE:16}"
+  h2:
+    console:
+      # disable spring boot built-in h2-console since we start it manually with correct configuration
+      enabled: false
+
+  jmx:
+    enabled: false
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  mvc:
+    throw-exception-if-no-handler-found: false
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  resources:
+    add-mappings: true
+
+springdoc:
+  show-actuator: true
+
+# spring CORS configuration
+spring.mvc.cors:
+  mappings:
+    # Intercept path
+    "[/api/**]":
+      #Comma-separated list of origins to allow. '*' allows all origins. When not set,CORS support is disabled.
+      allowed-origins: "*"
+      #Comma-separated list of methods to allow. '*' allows all methods.
+      allowed-methods: "*"
+      #Comma-separated list of headers to allow in a request. '*' allows all headers.
+      allowed-headers: "*"
+      #How long, in seconds, the response from a pre-flight request can be cached by clients.
+      max-age: "1800"
+      #Set whether credentials are supported. When not set, credentials are not supported.
+      allow-credentials: "true"
+
+server:
+  # Server bind address
+  address: "${HTTP_BIND_ADDRESS:0.0.0.0}"
+  # Server bind port
+  port: "${HTTP_BIND_PORT:8081}"
+
+
