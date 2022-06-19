@@ -141,7 +141,7 @@ public class RecipeService {
         log.debug("Request to inquiry Recipes");
         Set<Long> filteredRecipeIds = new HashSet<>();
         if (filterRecipeDto.getAttributes() != null && filterRecipeDto.getAttributes().size() > 0) {
-            filteredRecipeIds.addAll(attributeRepository.findAllByRecipeAttributeTypeIn(filterRecipeDto.getAttributes()).stream().flatMap(att -> att.getRecipes().stream().map(Recipe::getId)).collect(Collectors.toSet()));
+            filteredRecipeIds.addAll(recipeRepository.findAllByAttributesIn(new HashSet<>(attributeRepository.findAllByRecipeAttributeTypeIn(filterRecipeDto.getAttributes()))).stream().map(Recipe::getId).collect(Collectors.toSet()));
         }
         if (filterRecipeDto.getExcludeIngredients() != null && filterRecipeDto.getExcludeIngredients().size() > 0) {
             filteredRecipeIds.addAll(recipeIngredientRepository.findAllByIngredientNames(filterRecipeDto.getExcludeIngredients()).stream().map(recIng -> recIng.getRecipe().getId()).collect(Collectors.toSet()));

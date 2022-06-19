@@ -1,5 +1,6 @@
 package com.abn.recipeman.persistence.repository;
 
+import com.abn.recipeman.domain.model.entity.Attribute;
 import com.abn.recipeman.domain.model.entity.Recipe;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +25,8 @@ public interface RecipeRepository extends RecipeRepositoryWithBagRelationships, 
     default List<Recipe> findAllWithEagerRelationships() {
         return this.fetchBagRelationships(this.findAll());
     }
+
+    List<Recipe> findAllByAttributesIn(Set<Attribute> attributes);
 
     default Page<Recipe> findAllWithEagerRelationships(Pageable pageable) {
         return this.fetchBagRelationships(this.findAll(pageable));
