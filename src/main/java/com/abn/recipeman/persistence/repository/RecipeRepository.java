@@ -29,20 +29,6 @@ public interface RecipeRepository extends RecipeRepositoryWithBagRelationships, 
         return this.fetchBagRelationships(this.findAll(pageable));
     }
 
-/*    @Query("select rec from Recipe rec where " +
-            " ( :attributes is null or (select COUNT(att) from rec.attributes as att where att.name in ( :attributes )  )  > 0  ) " +
-            " and  ( :excludeIngredients is null or (select count(recIngExcl) from rec.recipeIngredients as recIngExcl inner join recIngExcl.ingredient as ingEx where ingEx.name in ( :excludeIngredients ) ) = 0 )  " +
-            " and  ( :includeIngredients is null or (select count(recIngIncl) from rec.recipeIngredients as recIngIncl inner join recIngIncl.ingredient as ingInc where ingInc.name in ( :includeIngredients ) ) > 0 )  " +
-            " and ( :servingNumber is null or rec.servingNumber = :servingNumber ) " +
-            " and ( :instruction is null or rec.instruction like %:instruction% ) "
-    )
-    Page<Recipe> inquiryAll(@Param("attributes") Set<String> attributes,
-                            @Param("servingNumber") Integer servingNumber,
-                            @Param("instruction") String instruction,
-                            @Param("includeIngredients") Set<String> includeIngredients,
-                            @Param("excludeIngredients") Set<String> excludeIngredients,
-                            Pageable pageable);*/
-
     @Query("select rec from Recipe rec where " +
             " ( :includeRecIds IS NOT NULL OR :servingNumber IS NOT NULL OR  :inInstruction IS NOT NULL ) " +
             " and ( :includeRecIds is NULL OR rec.id IN :includeRecIds ) " +

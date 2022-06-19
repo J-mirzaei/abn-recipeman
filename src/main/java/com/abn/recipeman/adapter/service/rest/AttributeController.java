@@ -36,7 +36,7 @@ public class AttributeController implements BaseController {
 
     private final AttributeRepository attributeRepository;
 
-    public AttributeController(AttributeService attributeService, AttributeRepository attributeRepository) {
+    public AttributeController(final AttributeService attributeService, final AttributeRepository attributeRepository) {
         this.attributeService = attributeService;
         this.attributeRepository = attributeRepository;
     }

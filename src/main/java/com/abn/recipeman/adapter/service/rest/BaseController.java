@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface BaseController {
 
-    default <X> ResponseEntity<X> wrapOrNotFound(Optional<X> maybeResponse) {
+    default <X> ResponseEntity<X> wrapOrNotFound(final Optional<X> maybeResponse) {
         return wrapOrNotFound(maybeResponse, null);
     }
 

@@ -12,7 +12,6 @@ import com.abn.recipeman.domain.model.entity.Attribute;
 import com.abn.recipeman.domain.model.entity.Ingredient;
 import com.abn.recipeman.domain.model.entity.Recipe;
 import com.abn.recipeman.domain.model.entity.RecipeIngredient;
-import com.abn.recipeman.persistence.repository.AttributeRepository;
 import com.abn.recipeman.persistence.repository.RecipeRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.BeforeEach;
@@ -99,8 +98,6 @@ class RecipesControllerTest {
 
     @Autowired
     private RecipeRepository recipeRepository;
-    @Autowired
-    private AttributeRepository attributeRepository;
     @Autowired
     private RecipeIngredientService recipeIngredientService;
 
@@ -559,13 +556,11 @@ class RecipesControllerTest {
         // Create the Recipe with an existing ID
         recipe.setInstruction(APPLE_PIE_INSTRUCTION);
         Attribute attribute = new Attribute();
-//        attribute.setId(1L);
         attribute.setRecipeAttributeType(RecipeAttributeType.VEGETARIAN);
         recipe.setAttributes(Collections.singleton(attribute));
         FilterRecipeDto filterRecipeDto = FilterRecipeDto.builder().filterInstruction("JAFAR!!!").build();
 
-        Recipe savedRecipe = recipeRepository.saveAndFlush(recipe);
-//        Attribute savedAttribute = attributeRepository.save(attribute);
+        recipeRepository.saveAndFlush(recipe);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         MvcResult mvcResult = restRecipeMockMvc

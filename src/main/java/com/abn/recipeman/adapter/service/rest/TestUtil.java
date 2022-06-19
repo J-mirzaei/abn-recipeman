@@ -31,7 +31,7 @@ public final class TestUtil {
      * @return the JSON byte array.
      * @throws IOException
      */
-    public static byte[] convertObjectToJsonBytes(Object object) throws IOException {
+    public static byte[] convertObjectToJsonBytes(final Object object) throws IOException {
         return mapper.writeValueAsBytes(object);
     }
 
@@ -42,7 +42,7 @@ public final class TestUtil {
      * @param data the data to put in the byte array.
      * @return the JSON byte array.
      */
-    public static byte[] createByteArray(int size, String data) {
+    public static byte[] createByteArray(final int size, final String data) {
         byte[] byteArray = new byte[size];
         for (int i = 0; i < size; i++) {
             byteArray[i] = Byte.parseByte(data, 2);
@@ -53,17 +53,12 @@ public final class TestUtil {
     private TestUtil() {
     }
 
-    public static <T> T serialize(String contentAsString, TypeReference<T> type) throws JsonProcessingException {
+    public static <T> T serialize(final String contentAsString, final TypeReference<T> type) throws JsonProcessingException {
         return mapper.readValue(contentAsString, type);
     }
 
     public static <T> String convertToJson(T obj) throws JsonProcessingException {
         return mapper.writeValueAsString(obj);
     }
-
-    /*public static <T> String convertToJson(Map<String,Object> obj) throws JsonProcessingException {
-        return mapper.re(obj);
-    }*/
-
 
 }

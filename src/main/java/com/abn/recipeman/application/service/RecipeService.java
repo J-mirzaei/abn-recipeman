@@ -152,7 +152,7 @@ public class RecipeService {
 
         return recipeRepository
                 .inquiryAllByIdsWithEagerRelationships(
-                        filteredRecipeIds.size() > 0 ? filteredRecipeIds : null,
+                        filteredRecipeIds.isEmpty() ? null: filteredRecipeIds,
                         filterRecipeDto.getServingNumber(),
                         filterRecipeDto.getFilterInstruction(),
                         pageable

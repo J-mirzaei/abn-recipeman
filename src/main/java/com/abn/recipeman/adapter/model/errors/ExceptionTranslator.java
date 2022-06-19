@@ -21,8 +21,8 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleCityNotFoundException(
-            Exception ex, WebRequest request) {
-        Map<String, Object> body = new LinkedHashMap<>();
+            final Exception ex, final WebRequest request) {
+        final Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", ex.getMessage());
 
@@ -31,13 +31,13 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<Object> handleCityNotFoundException(
-            ResponseStatusException ex, WebRequest request) {
+            final ResponseStatusException ex, final WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), ex.getStatus());
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Object> handleCConstraintViolationException(
-            ConstraintViolationException ex, WebRequest request) {
+            final ConstraintViolationException ex, final WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

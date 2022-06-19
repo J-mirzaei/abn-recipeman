@@ -13,7 +13,7 @@ public class BadRequestAlertException extends RuntimeException {
     private final String errorKey;
 
 
-    public BadRequestAlertException(String defaultMessage, String entityName, String errorKey) {
+    public BadRequestAlertException(final String defaultMessage, final String entityName, final String errorKey) {
         super(defaultMessage);
         this.entityName = entityName;
         this.errorKey = errorKey;
@@ -27,8 +27,8 @@ public class BadRequestAlertException extends RuntimeException {
         return errorKey;
     }
 
-    private static Map<String, Object> getAlertParameters(String entityName, String errorKey) {
-        Map<String, Object> parameters = new HashMap<>();
+    private static Map<String, Object> getAlertParameters(final String entityName, final String errorKey) {
+        final Map<String, Object> parameters = new HashMap<>();
         parameters.put("message", "error." + errorKey);
         parameters.put("params", entityName);
         return parameters;
