@@ -1,7 +1,5 @@
 package com.abn.recipeman.adapter.service.rest;
 
-import com.abn.recipeman.application.model.dto.FilterRecipeDto;
-import com.abn.recipeman.application.model.dto.RecipeDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -10,7 +8,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * Utility class for testing REST controllers.
@@ -53,10 +50,11 @@ public final class TestUtil {
         return byteArray;
     }
 
-    private TestUtil() {}
+    private TestUtil() {
+    }
 
     public static <T> T serialize(String contentAsString, TypeReference<T> type) throws JsonProcessingException {
-        return mapper.readValue(contentAsString,type);
+        return mapper.readValue(contentAsString, type);
     }
 
     public static <T> String convertToJson(T obj) throws JsonProcessingException {

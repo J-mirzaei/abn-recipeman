@@ -613,6 +613,7 @@ class RecipesControllerTest {
         assertThat(recipeList.get(0).getId()).isEqualTo(savedRecipe.getId());
         assertThat(recipeList.get(0).getAttributes().size()).isEqualTo(1);
     }
+
     @Test
     @Transactional
     void inquiryRecipe_with_ingradient() throws Exception {
@@ -620,7 +621,7 @@ class RecipesControllerTest {
         recipe.setInstruction(DEFAULT_INSTRUCTION);
         Ingredient ingredient = new Ingredient();
         ingredient.setName("rice");
-        RecipeIngredient recipeIngredient=new RecipeIngredient();
+        RecipeIngredient recipeIngredient = new RecipeIngredient();
         recipeIngredient.setAmount(100);
         recipeIngredient.setIngredient(ingredient);
         recipe.setRecipeIngredients(Set.of(recipeIngredient));

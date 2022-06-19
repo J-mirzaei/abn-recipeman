@@ -9,11 +9,11 @@ import java.util.Optional;
 
 public interface BaseController {
 
-   default  <X> ResponseEntity<X> wrapOrNotFound(Optional<X> maybeResponse) {
+    default <X> ResponseEntity<X> wrapOrNotFound(Optional<X> maybeResponse) {
         return wrapOrNotFound(maybeResponse, null);
     }
 
-    default   <X> ResponseEntity<X> wrapOrNotFound(Optional<X> maybeResponse, HttpHeaders header) {
+    default <X> ResponseEntity<X> wrapOrNotFound(Optional<X> maybeResponse, HttpHeaders header) {
         return maybeResponse.map(response -> ResponseEntity.ok().headers(header).body(response))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }

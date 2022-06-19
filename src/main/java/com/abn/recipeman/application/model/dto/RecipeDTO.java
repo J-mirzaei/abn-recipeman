@@ -90,11 +90,11 @@ public class RecipeDTO implements Serializable {
     @Override
     public String toString() {
         return "RecipeDTO{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", servingNumber=" + getServingNumber() +
-            ", instruction='" + getInstruction() + "'" +
-            ", attributes=" + getAttributes() +
-            "}";
+                "id=" + getId() +
+                ", name='" + getName() + "'" +
+                ", servingNumber=" + getServingNumber() +
+                ", instruction='" + getInstruction() + "'" +
+                ", attributes=" + getAttributes() +
+                "}";
     }
 }

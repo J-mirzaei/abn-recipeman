@@ -15,7 +15,7 @@ import java.util.Set;
  * A Attribute.
  */
 @Entity
-@Table(name = "attribute",uniqueConstraints = {@UniqueConstraint(name = "unique_att_cons",columnNames = {"recipeAttributeType"})})
+@Table(name = "attribute", uniqueConstraints = {@UniqueConstraint(name = "unique_att_cons", columnNames = {"recipeAttributeType"})})
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Attribute implements Serializable {
 
@@ -34,7 +34,7 @@ public class Attribute implements Serializable {
 
     @ManyToMany(mappedBy = "attributes")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "recipeIngredients", "attributes" }, allowSetters = true)
+    @JsonIgnoreProperties(value = {"recipeIngredients", "attributes"}, allowSetters = true)
     private Set<Recipe> recipes = new HashSet<>();
 
 
@@ -116,8 +116,8 @@ public class Attribute implements Serializable {
     @Override
     public String toString() {
         return "Attribute{" +
-            "id=" + getId() +
-            ", recipeAttributeType='" + getRecipeAttributeType() + "'" +
-            "}";
+                "id=" + getId() +
+                ", recipeAttributeType='" + getRecipeAttributeType() + "'" +
+                "}";
     }
 }

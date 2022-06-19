@@ -58,8 +58,8 @@ public class AttributeDTO implements Serializable {
     @Override
     public String toString() {
         return "AttributeDTO{" +
-            "id=" + getId() +
-            ", recipeAttributeType='" + getRecipeAttributeType() + "'" +
-            "}";
+                "id=" + getId() +
+                ", recipeAttributeType='" + getRecipeAttributeType() + "'" +
+                "}";
     }
 }

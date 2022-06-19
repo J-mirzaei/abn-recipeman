@@ -1,4 +1,3 @@
-
 ---
 springdoc:
   api-docs:
@@ -31,10 +30,10 @@ spring:
     hibernate:
       ddl-auto: "${SPRING_DATASOURCE_AUTO_DDL:update}"
     database-platform: "${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.PostgreSQL95Dialect}"
-#    database-platform: "${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.H2Dialect}"
+  #    database-platform: "${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.H2Dialect}"
   datasource:
-#    type: com.zaxxer.hikari.HikariDataSource
-#    url: "${SPRING_DATASOURCE_URL:jdbc:h2:mem:recipeman;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}"
+    #    type: com.zaxxer.hikari.HikariDataSource
+    #    url: "${SPRING_DATASOURCE_URL:jdbc:h2:mem:recipeman;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}"
     driverClassName: "${SPRING_DRIVER_CLASS_NAME:org.postgresql.Driver}"
     url: jdbc:postgresql://localhost:5432/recipeMan
     username: "${SPRING_DATASOURCE_USERNAME:postgres}"

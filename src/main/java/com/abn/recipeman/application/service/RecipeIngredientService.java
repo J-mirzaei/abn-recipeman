@@ -107,7 +107,7 @@ public class RecipeIngredientService {
         recipeIngredientRepository.deleteById(id);
     }
 
-    public List<RecipeIngredientDTO>  findByRecipeId(Long id) {
-       return recipeIngredientRepository.findByRecipeId(id).stream().map(recipeIngredientMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    public List<RecipeIngredientDTO> findByRecipeId(Long id) {
+        return recipeIngredientRepository.findByRecipeId(id).stream().map(recipeIngredientMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
 }

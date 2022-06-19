@@ -15,7 +15,7 @@ import java.util.Set;
  * A Recipe.
  */
 @Entity
-@Table(name = "recipe",uniqueConstraints = {@UniqueConstraint(name = "uni_recep_con",columnNames = {"name"})})
+@Table(name = "recipe", uniqueConstraints = {@UniqueConstraint(name = "uni_recep_con", columnNames = {"name"})})
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Recipe implements Serializable {
 
@@ -40,19 +40,19 @@ public class Recipe implements Serializable {
     @Column(name = "instruction", nullable = false)
     private String instruction;
 
-    @OneToMany(mappedBy = "recipe",cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.PERSIST)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "recipe", "ingredients" }, allowSetters = true)
+    @JsonIgnoreProperties(value = {"recipe", "ingredients"}, allowSetters = true)
     private Set<RecipeIngredient> recipeIngredients = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
-        name = "rel_recipe__attribute",
-        joinColumns = @JoinColumn(name = "recipe_id"),
-        inverseJoinColumns = @JoinColumn(name = "attribute_id")
+            name = "rel_recipe__attribute",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "attribute_id")
     )
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "recipes" }, allowSetters = true)
+    @JsonIgnoreProperties(value = {"recipes"}, allowSetters = true)
     private Set<Attribute> attributes = new HashSet<>();
 
     public Long getId() {
@@ -184,10 +184,10 @@ public class Recipe implements Serializable {
     @Override
     public String toString() {
         return "Recipe{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", servingNumber=" + getServingNumber() +
-            ", instruction='" + getInstruction() + "'" +
-            "}";
+                "id=" + getId() +
+                ", name='" + getName() + "'" +
+                ", servingNumber=" + getServingNumber() +
+                ", instruction='" + getInstruction() + "'" +
+                "}";
     }
 }

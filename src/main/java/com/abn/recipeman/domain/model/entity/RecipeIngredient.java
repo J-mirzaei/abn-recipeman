@@ -29,11 +29,11 @@ public class RecipeIngredient implements Serializable {
     private Integer amount;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JsonIgnoreProperties(value = { "recipeIngredients" }, allowSetters = true)
+    @JsonIgnoreProperties(value = {"recipeIngredients"}, allowSetters = true)
     private Ingredient ingredient;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "recipeIngredients", "attributes" }, allowSetters = true)
+    @JsonIgnoreProperties(value = {"recipeIngredients", "attributes"}, allowSetters = true)
     private Recipe recipe;
 
     public Long getId() {

@@ -31,7 +31,6 @@
 - Also, in the same query we have 3 joins to find the included, excluded, and attributes (Ex. Vegetarian) required refactoring. For example, because of limited numbers of ingredients and attributes, caching can help us. 
 
 ## Test
-- Unit Test implemented for one Service
 - Integration Test implemented for 2 controllers
 
 ## API Docs

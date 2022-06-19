@@ -1,7 +1,6 @@
 package com.abn.recipeman.persistence.repository;
 
 import com.abn.recipeman.domain.model.entity.Attribute;
-import com.abn.recipeman.domain.model.entity.Recipe;
 import org.hibernate.annotations.QueryHints;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

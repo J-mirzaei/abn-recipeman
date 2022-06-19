@@ -1,7 +1,6 @@
 package com.abn.recipeman.adapter.service.rest;
 
 import com.abn.recipeman.adapter.model.errors.BadRequestAlertException;
-import com.abn.recipeman.application.model.dto.AttributeDTO;
 import com.abn.recipeman.application.model.dto.FilterRecipeDto;
 import com.abn.recipeman.application.model.dto.RecipeDTO;
 import com.abn.recipeman.application.service.RecipeService;
@@ -152,7 +151,7 @@ public class RecipeController implements BaseController {
      * @param size
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of recipes in body.
      */
-    @Operation(description = "Partial updates given fields of an existing attribute, field will ignore if it is null",responses = {
+    @Operation(description = "Partial updates given fields of an existing attribute, field will ignore if it is null", responses = {
             @ApiResponse(description = "The updated attribute",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = FilterRecipeDto.class))),
@@ -163,8 +162,8 @@ public class RecipeController implements BaseController {
     @PostMapping("/recipes/inquiry")
     public List<RecipeDTO> inquiryRecipes(
             @RequestBody FilterRecipeDto filterRecipeDto
-            ,@RequestParam(name = "page",required = false, defaultValue = "0") int page
-            , @RequestParam(name = "size",required = false,defaultValue = "10000000")  int size) {
+            , @RequestParam(name = "page", required = false, defaultValue = "0") int page
+            , @RequestParam(name = "size", required = false, defaultValue = "10000000") int size) {
         log.debug("REST request to inquiry Recipes");
         return recipeService.inquiryRecipes(filterRecipeDto, PageRequest.of(page, size));
     }

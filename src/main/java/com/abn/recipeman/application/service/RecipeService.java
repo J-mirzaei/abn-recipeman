@@ -5,7 +5,6 @@ import com.abn.recipeman.application.model.dto.RecipeDTO;
 import com.abn.recipeman.application.model.dto.mapper.RecipeMapper;
 import com.abn.recipeman.domain.model.entity.Recipe;
 import com.abn.recipeman.persistence.repository.AttributeRepository;
-import com.abn.recipeman.persistence.repository.AttributeRepositoryWithBagRelationships;
 import com.abn.recipeman.persistence.repository.RecipeIngredientRepository;
 import com.abn.recipeman.persistence.repository.RecipeRepository;
 import org.slf4j.Logger;
@@ -33,7 +32,7 @@ public class RecipeService {
 
     private final RecipeMapper recipeMapper;
 
-    public RecipeService(RecipeRepository recipeRepository,AttributeRepository attributeRepository, RecipeIngredientRepository recipeIngredientRepository, RecipeMapper recipeMapper) {
+    public RecipeService(RecipeRepository recipeRepository, AttributeRepository attributeRepository, RecipeIngredientRepository recipeIngredientRepository, RecipeMapper recipeMapper) {
         this.recipeRepository = recipeRepository;
         this.attributeRepository = attributeRepository;
         this.recipeIngredientRepository = recipeIngredientRepository;
@@ -141,7 +140,7 @@ public class RecipeService {
     public List<RecipeDTO> inquiryRecipes(FilterRecipeDto filterRecipeDto, Pageable pageable) {
         log.debug("Request to inquiry Recipes");
         Set<Long> filteredRecipeIds = new HashSet<>();
-        if (filterRecipeDto.getAttributes() != null && filterRecipeDto.getAttributes().size()>0) {
+        if (filterRecipeDto.getAttributes() != null && filterRecipeDto.getAttributes().size() > 0) {
             filteredRecipeIds.addAll(attributeRepository.findAllByRecipeAttributeTypeIn(filterRecipeDto.getAttributes()).stream().flatMap(att -> att.getRecipes().stream().map(Recipe::getId)).collect(Collectors.toSet()));
         }
         if (filterRecipeDto.getExcludeIngredients() != null && filterRecipeDto.getExcludeIngredients().size() > 0) {

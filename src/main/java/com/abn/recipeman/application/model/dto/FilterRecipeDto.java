@@ -13,9 +13,9 @@ import java.util.Set;
  */
 @Builder
 @Data
-@Schema(name="FilterRecipeDto", description="The filter object to inquiry Recipes")
+@Schema(name = "FilterRecipeDto", description = "The filter object to inquiry Recipes")
 public class FilterRecipeDto implements Serializable {
-    @Schema(name="vegetarian", description="is vegetarian")
+    @Schema(name = "vegetarian", description = "is vegetarian")
     private Set<RecipeAttributeType> attributes;
     private Integer servingNumber;
     private Set<String> includeIngredients;

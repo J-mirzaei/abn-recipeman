@@ -4,7 +4,6 @@ import com.abn.recipeman.adapter.model.errors.BadRequestAlertException;
 import com.abn.recipeman.application.model.dto.AttributeDTO;
 import com.abn.recipeman.application.service.AttributeService;
 import com.abn.recipeman.persistence.repository.AttributeRepository;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -27,7 +26,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
-public class AttributeController implements BaseController  {
+public class AttributeController implements BaseController {
 
     private final Logger log = LoggerFactory.getLogger(AttributeController.class);
 
@@ -57,15 +56,15 @@ public class AttributeController implements BaseController  {
         }
         AttributeDTO result = attributeService.save(attributeDTO);
         return ResponseEntity
-            .created(new URI("/api/attributes/" + result.getId()))
-            
-            .body(result);
+                .created(new URI("/api/attributes/" + result.getId()))
+
+                .body(result);
     }
 
     /**
      * {@code PUT  /attributes/:id} : Updates an existing attribute.
      *
-     * @param id the id of the attributeDTO to save.
+     * @param id           the id of the attributeDTO to save.
      * @param attributeDTO the attributeDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated attributeDTO,
      * or with status {@code 400 (Bad Request)} if the attributeDTO is not valid,
@@ -74,8 +73,8 @@ public class AttributeController implements BaseController  {
      */
     @PutMapping("/attributes/{id}")
     public ResponseEntity<AttributeDTO> updateAttribute(
-        @PathVariable(value = "id", required = false) final Long id,
-        @Valid @RequestBody AttributeDTO attributeDTO
+            @PathVariable(value = "id", required = false) final Long id,
+            @Valid @RequestBody AttributeDTO attributeDTO
     ) throws URISyntaxException {
         log.debug("REST request to update Attribute : {}, {}", id, attributeDTO);
         if (attributeDTO.getId() == null) {
@@ -91,14 +90,14 @@ public class AttributeController implements BaseController  {
 
         AttributeDTO result = attributeService.update(attributeDTO);
         return ResponseEntity
-            .ok()
-            .body(result);
+                .ok()
+                .body(result);
     }
 
     /**
      * {@code PATCH  /attributes/:id} : Partial updates given fields of an existing attribute, field will ignore if it is null
      *
-     * @param id the id of the attributeDTO to save.
+     * @param id           the id of the attributeDTO to save.
      * @param attributeDTO the attributeDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated attributeDTO,
      * or with status {@code 400 (Bad Request)} if the attributeDTO is not valid,
@@ -106,7 +105,7 @@ public class AttributeController implements BaseController  {
      * or with status {@code 500 (Internal Server Error)} if the attributeDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @Operation(description = "Partial updates given fields of an existing attribute, field will ignore if it is null",responses = {
+    @Operation(description = "Partial updates given fields of an existing attribute, field will ignore if it is null", responses = {
             @ApiResponse(description = "The updated attribute",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = AttributeDTO.class))),
@@ -114,10 +113,10 @@ public class AttributeController implements BaseController  {
             @ApiResponse(responseCode = "404", description = "if the attributeDTO is not found"),
             @ApiResponse(responseCode = "500", description = "if the attributeDTO couldn't be updated")
     })
-    @PatchMapping(value = "/attributes/{id}", consumes = { "application/json", "application/merge-patch+json" })
+    @PatchMapping(value = "/attributes/{id}", consumes = {"application/json", "application/merge-patch+json"})
     public ResponseEntity<AttributeDTO> partialUpdateAttribute(
-        @PathVariable(value = "id", required = false) final Long id,
-        @NotNull @RequestBody AttributeDTO attributeDTO
+            @PathVariable(value = "id", required = false) final Long id,
+            @NotNull @RequestBody AttributeDTO attributeDTO
     ) throws URISyntaxException {
         log.debug("REST request to partial update Attribute partially : {}, {}", id, attributeDTO);
         if (attributeDTO.getId() == null) {
@@ -134,7 +133,7 @@ public class AttributeController implements BaseController  {
         Optional<AttributeDTO> result = attributeService.partialUpdate(attributeDTO);
 
         return wrapOrNotFound(
-            result
+                result
         );
     }
 
@@ -173,7 +172,7 @@ public class AttributeController implements BaseController  {
         log.debug("REST request to delete Attribute : {}", id);
         attributeService.delete(id);
         return ResponseEntity
-            .noContent()
-            .build();
+                .noContent()
+                .build();
     }
 }
